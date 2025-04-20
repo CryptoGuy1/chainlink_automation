@@ -1,28 +1,54 @@
-REMIX DEFAULT WORKSPACE
+# ⛓️ Chainlink Automation Showcase – Time-Based, Custom Logic & Log-Triggered Upkeeps
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+This repository contains a collection of smart contracts deployed on the **Sepolia** and **Chainlink (LINK)** test networks. It demonstrates various types of Chainlink Automation (formerly Keepers) use cases — including time-based upkeeps, custom logic triggers, and log-triggered executions.
 
-This workspace contains 3 directories:
+> These contracts serve as modular examples for developers looking to integrate reliable, decentralized automation into their Web3 applications.
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+---
 
-SCRIPTS
+## 📌 Overview
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+Chainlink Automation allows smart contracts to be automatically executed based on conditions defined by the contract creator. In this repo, four key automation patterns are demonstrated:
 
-For the deployment of any other contract, just update the contract name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+| Contract         | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| `TimeBased.sol`   | Simplest contract; increments a counter — can be triggered externally.      |
+| `CustomLogic.sol` | Implements on-chain time-interval logic and self-managing upkeep behavior.  |
+| `EventEmitter.sol`| Emits logs that simulate event-based triggers for external automation.      |
+| `LogTrigger.sol`  | Listens for specific logs and reacts accordingly using custom log decoding. |
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
+---
 
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
+## 🧠 Use Case Scenarios
 
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+| Contract         | Automation Type     | Real-World Application Example                    |
+|------------------|---------------------|---------------------------------------------------|
+| `TimeBased.sol`   | External time-based | Scheduled tasks like hourly payouts or rebalances |
+| `CustomLogic.sol` | Internal logic-based| Polling-based logic (e.g., price feeds, timers)   |
+| `EventEmitter.sol`| Log producer        | User action signals, alerts, on-chain events      |
+| `LogTrigger.sol`  | Log consumer        | Reactive upkeeps based on event emissions         |
+
+---
+
+## 🧪 Deployed Networks
+
+These contracts have been deployed and tested on:
+
+- ✅ **Sepolia** Testnet  
+- ✅ **Chainlink Automation (LINK) Test Network**  
+  - via [Chainlink Automation App](https://automation.chain.link/)
+
+---
+🧪 How to Register Upkeeps
+Go to Chainlink Automation App
+
+Connect your wallet (on Sepolia)
+
+Register a new upkeep:
+
+For TimeBased or CustomLogic: use checkUpkeep & performUpkeep
+
+For LogTrigger: set a log trigger based on events from EventEmitter
+
+Fund the upkeep with test LINK (from faucet)
+
